@@ -1,0 +1,4 @@
+show running-config | in hostname
+show ver | include , Version
+show inven
+show module
