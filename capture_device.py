@@ -1,56 +1,54 @@
-from netmiko import ConnectHandler
+import device_data as device_data
+import os.path
+from netmiko import ConnectHandler , NetmikoTimeoutException, NetmikoAuthenticationException
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
 
-##Perintah dibawah untuk import list IP device dari file
-with open("list_ip.txt", "r") as file_list_ip:
-    list_ip=file_list_ip.read().split("\n")
-    print(list_ip)
 
-##Perintah dibawah untuk import list command yang mau diambil per device dari file
-with open("list_command.txt", "r") as file_list_command:
-    list_command=file_list_command.read().split("\n")
-    print(list_command)
-
-##Perintah untuk mendifinisikan tanggal untuk nama file
-date_now   = datetime.now()
-time_stamp = date_now.strftime("%d-%m-%y_%H_%M_%S")
-
-###Menerima input username dan password
-
-username = input("Masukan username ? ")
-password = input("Masukan Password ? ")
-secrets = input("Masukan enable secret ? ")
-
-##Perintah dibawah untuk mendefinisikan fungsi connect dan capture ke device
+##Perintah dibawah untuk mendefinisikan fungsi connect devie dan Capture Device
 def connect_device(ip):
-    ### Proses Connect ke Device
-    device = {
-        'device_type': 'cisco_ios',
-        'host': '',
-        'username': '',
-        'password': '',
-        'secret': '',
-    }
-    device['host'] = ip
-    device['username'] = username
-    device['password'] = password
-    device['secret'] = secrets
-    connect_device = ConnectHandler(**device)
-    connect_device.enable()
-    ### Mencari Hostname
-    req_hostname = connect_device.send_command('show running-config | in hostname')
-    split_hostname = req_hostname.split()
-    ### Define file name dari hostname dan tanggal
-    hostname_date = split_hostname[1] + '-' + time_stamp + '.log'
-    ### Proses Capture untuk setiap command yang ada di list file
-    for command in list_command:
-        #print(command) Optional untuk checking
-        output_command = connect_device.send_command(f"{command}")
-        print(command)
-        print(output_command)
-        with open(hostname_date, 'a') as file:
-            file.write(f'''\n{command}\n{output_command}\n\n''')
+        ### Proses Connect ke Device
+    try:
+        ##Define Date
+        date_now = datetime.now()
+        time_stamp = date_now.strftime("%d-%m-%y_%H_%M_%S")
+        ##parameter untuk Connect Device
+        device = {
+            'device_type': 'cisco_ios',
+            'host': '',
+            'username': '',
+            'password': '',
+            'secret': '',
+        }
+        device['host'] = ip
+        device['username'] = device_data.username
+        device['password'] = device_data.password
+        device['secret'] = device_data.secret
+        print(device)
+        ##initiate connect to device
+        connect_to_device = ConnectHandler(**device)
+        connect_to_device.enable()
+        ### Define hostname
+        req_hostname = connect_to_device.send_command('show running-config | in hostname')
+        split_hostname = req_hostname.split()
+        ### Define file name dari hostname dan tanggal untuk menyimpan output
+        file_path = "OutputFileCapture/"
+        hostname_date = split_hostname[1] + '-' + time_stamp + '.log'
+        file_name = os.path.join(file_path, hostname_date)
+        ##Proses Capture Command yang dibutuhkan
+        for command in device_data.list_command:
+            # print(command) Optional untuk checking
+            output_command = connect_to_device.send_command(f"{command}")
+            print(command)
+            print(output_command)
+            with open(file_name, 'a') as file:
+                file.write(f'''\n{command}\n{output_command}\n\n''')
+    except NetmikoTimeoutException:
+        print(f"Gagal mencapture Device {ip} in {time_stamp} Karena Connection Timeout ")
+        with open("list_failed_capture.txt",'a') as file_list_failed_capture:
+            file_list_failed_capture.write(f'''\nGagal mencapture Device {ip} in {time_stamp} Karena Connection Timeout\n''')
+    except NetmikoAuthenticationException:
+        print(f"Gagal mencapture Device {ip} in {time_stamp} Karena Gagal Authentikasi ")
+        with open("list_failed_capture.txt",'a') as file_list_failed_capture:
+            file_list_failed_capture.write(f'''\nGagal mencapture Device {ip} in {time_stamp} Karena Gagal Authentikasi\n''')
 
-###Perintah dibawah untuk eksekusi command untuk setiap ip dalam list
-for ip in list_ip:
-  connect_device(ip)

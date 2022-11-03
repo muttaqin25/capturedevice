@@ -1,0 +1,17 @@
+Gagal mencapture Device 10.16.123.10 in 03-11-22_13_21_26 Karena Connection Timeout
+
+Gagal mencapture Device 198.18.133.226 in 03-11-22_14_44_11 Karena Gagal Authentikasi
+
+Gagal mencapture Device 198.18.133.226 in 03-11-22_15_10_41 Karena Connection Timeout
+
+Gagal mencapture Device 198.18.133.226 in 03-11-22_15_12_17 Karena Gagal Authentikasi
+
+Gagal mencapture Device 198.18.133.226 in 03-11-22_15_12_55 Karena Gagal Authentikasi
+
+Gagal mencapture Device 198.18.133.226 in 03-11-22_15_14_50 Karena Gagal Authentikasi
+
+Gagal mencapture Device 198.18.133.226 in 03-11-22_15_17_24 Karena Gagal Authentikasi
+
+Gagal mencapture Device 10.16.123.10 in 03-11-22_15_21_53 Karena Connection Timeout
+
+Gagal mencapture Device 198.18.133.226 in 03-11-22_16_11_00 Karena Gagal Authentikasi
