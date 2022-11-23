@@ -1,14 +1,18 @@
 #Perintah dibawah untuk import list command yang mau diambil per device dari file dan list ip
-
-with open("list_command.txt", "r") as file_list_command:
-    list_command=file_list_command.read().split("\n")
-    print(f"List Command yang ingin di ambil {list_command}")
-
-with open("list_ip.txt", "r") as file_list_ip:
-    list_ip=file_list_ip.read().split("\n")
-    print(f"List Perangkat yang ingin di capture {list_ip}")
+import os.path
 
 ##Perintah untuk mendapatkan input user dan password
 username = input("Masukan Username ?")
 password = input("Masukan password ?")
 secret = input("Masukan secret ?")
+
+## Membuat fungsi untuk membaca file
+def read_file(nama_file):
+    with open(nama_file, "r") as file:
+        list_data = file.read().split("\n")
+        return list_data
+
+## Membaca file list command
+list_command = read_file("list_command.txt")
+## Membaca file list command
+list_ip = read_file("list_ip.txt")
