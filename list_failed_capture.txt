@@ -1,6 +1,0 @@
-
-Gagal mencapture Device 198.18.133.226 in 06-11-22_22_28_13 Karena Connection Timeout
-
-Gagal mencapture Device 198.18.133.226 in 06-11-22_22_28_18 Karena Connection Timeout
-
-Gagal mencapture Device 198.18.133.226 in 06-11-22_22_28_28 Karena Connection Timeout
