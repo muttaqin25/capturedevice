@@ -12,7 +12,11 @@ def read_file(nama_file):
         list_data = file.read().split("\n")
         return list_data
 
+def write_file(nama_file,data_write):
+    with open(nama_file, 'a') as file:
+        file.write(f'{data_write}\n')
+
 ## Membaca file list command
-list_command = read_file("list_command.txt")
+list_command = read_file("_list_command.txt")
 ## Membaca file list command
-list_ip = read_file("list_ip.txt")
+list_ip = read_file("_list_ip.txt")

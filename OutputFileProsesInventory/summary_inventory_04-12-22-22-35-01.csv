@@ -1,0 +1,20 @@
+Hostname;Description;Product ID;Serial Number
+BLK-CC-VG;"Cisco ISR4431 Chassis"; ISR4431/K9       ; FGL2402L5JM
+;"250W AC Power Supply for Cisco ISR4430"; PWR-4430-AC      ; DCC2349H01G
+;"250W AC Power Supply for Cisco ISR4430"; PWR-4430-AC      ; DCC2349H01U
+;"Cisco ISR4430 Fan Assembly"; ACS-4430-FANASSY ;            
+;"Cisco ISR4431 Built-In NIM controller"; ISR4431/K9       ;            
+;"PVDM4-256 Voice DSP Module"; PVDM4-256        ; FOC2347562
+;"Front Panel 4 ports Gigabitethernet Module"; ISR4431-X-4x1GE  ;            
+;"Cisco ISR4431 Route Processor"; ISR4431/K9       ; FOC2350AFD
+;"Cisco ISR4431 Forwarding Processor"; ISR4431/K9       ;            
+Hostname;Description;Product ID;Serial Number
+DRCTRNJYVGCC02;"Cisco ISR4431 Chassis"; ISR4431/K9       ; FGL2402L5JD
+;"250W AC Power Supply for Cisco ISR4430"; PWR-4430-AC      ; DCC2349H01F
+;"250W AC Power Supply for Cisco ISR4430"; PWR-4430-AC      ; DCC2349H01
+;"Cisco ISR4430 Fan Assembly"; ACS-4430-FANASSY ;            
+;"Cisco ISR4431 Built-In NIM controller"; ISR4431/K9       ;            
+;"PVDM4-256 Voice DSP Module"; PVDM4-256        ; FOC2347564T
+;"Front Panel 4 ports Gigabitethernet Module"; ISR4431-X-4x1GE  ;            
+;"Cisco ISR4431 Route Processor"; ISR4431/K9       ; FOC2350AFFP
+;"Cisco ISR4431 Forwarding Processor"; ISR4431/K9       ;            
